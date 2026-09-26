@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Confirm delete</title>
+    <link rel="stylesheet" href="{% static 'catalog/style.css' %}" />
+</head>
+<body>
+    <header>
+        <h1>Confirm delete</h1>
+        <nav>
+            <a href="{% url 'admin_panel' %}">Back to admin</a>
+            <form method="post" action="{% url 'custom_logout' %}">{% csrf_token %}<button type="submit">Logout</button></form>
+        </nav>
+    </header>
+    <div class="content-wrapper">
+        <p>Delete “{{ item.name }}”?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="danger-button">Yes, delete</button>
+            <a href="{% url 'admin_panel' %}" class="secondary-button">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>

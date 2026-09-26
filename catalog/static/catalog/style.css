@@ -1,0 +1,247 @@
+:root {
+    --bg: #f4f4f7;
+    --surface: #ffffff;
+    --text: #111827;
+    --muted: #6b7280;
+    --primary: #2563eb;
+    --danger: #dc2626;
+    --border: #d1d5db;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Inter, system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+header {
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    border-bottom: 1px solid var(--border);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+nav a {
+    margin-left: 1rem;
+    text-decoration: none;
+    color: var(--primary);
+}
+
+.audio-player {
+    display: grid;
+    gap: 0.75rem;
+    position: relative;
+}
+
+.player-top-row {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.controls-row {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.player-btn {
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    padding: 0.55rem;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.75rem;
+}
+
+.player-btn svg {
+    width: 1rem;
+    height: 1rem;
+    fill: currentColor;
+}
+
+.seek-icon {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+}
+
+.player-progress-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    min-width: 0;
+}
+
+.timecodes {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+.progress-bar {
+    width: 100%;
+}
+
+.player-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.progress-bar,
+.volume-slider {
+    width: 100%;
+}
+
+.time {
+    font-size: 0.9rem;
+    color: var(--muted);
+    min-width: 2.5rem;
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex: 0 0 auto;
+}
+
+.volume-slider {
+    width: 3rem;
+}
+
+.speed-btn-container {
+    position: relative;
+}
+
+.speed-btn {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 0.35rem 0.75rem;
+    border-radius: 0.65rem;
+}
+
+.speed-overlay {
+    position: absolute;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 30px rgba(15,23,42,0.08);
+    display: none;
+    z-index: 30;
+    right: 0;
+    bottom: calc(100% + 8px);
+    min-width: 6rem;
+    overflow: hidden;
+}
+
+.speed-overlay.open {
+    display: block;
+}
+
+.speed-overlay button {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    border: none;
+    background: transparent;
+    color: var(--text);
+}
+
+button {
+    border: 1px solid transparent;
+    border-radius: 0.75rem;
+    padding: 0.7rem 1rem;
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+}
+
+.primary-button {
+    background: var(--primary);
+    color: white;
+    border-color: transparent;
+}
+
+.secondary-button {
+    background: white;
+    border-color: var(--border);
+}
+
+.danger-button {
+    background: var(--danger);
+    color: white;
+    border-color: transparent;
+}
+
+.form-row {
+    margin-bottom: 1rem;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 0.95rem;
+    color: var(--muted);
+}
+
+.admin-actions {
+    grid-column: 1 / -1;
+}
+
+.content-wrapper {
+    padding: 2rem;
+}
+
+.login-page {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    background: var(--bg);
+}
+
+.login-form {
+    width: 340px;
+    padding: 2rem;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.error {
+    color: var(--danger);
+}
+

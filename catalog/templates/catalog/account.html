@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Account</title>
+    <link rel="stylesheet" href="{% static 'catalog/style.css' %}" />
+</head>
+<body>
+    <header>
+        <h1>My Account</h1>
+        <nav>
+            <a href="{% url 'archive' %}">Archive</a>
+            <form method="post" action="{% url 'custom_logout' %}">{% csrf_token %}<button type="submit">Logout</button></form>
+        </nav>
+    </header>
+
+    <div class="page-wrapper">
+        <aside class="filter-panel">
+            <h2>Account</h2>
+            <nav class="account-nav">
+                <a href="{% url 'my_content' %}" class="primary-button">My content</a>
+            </nav>
+        </aside>
+
+        <main class="archive-list">
+            <h2>Welcome, {{ user.username }}</h2>
+            <p>Use My content to access your purchased audio files.</p>
+            <section class="card">
+                <h2>Contact verification</h2>
+                <p>Email: {{ user.email }}{% if profile.email_verified %} (verified){% endif %}</p>
+                {% if profile.email_verified and not profile.phone_verified %}
+                    <form method="post" action="{% url 'start_phone_verification' %}">
+                        {% csrf_token %}
+                        {{ phone_form.phone_number.label_tag }}
+                        {{ phone_form.phone_number }}
+                        {% for error in phone_form.phone_number.errors %}<span class="error">{{ error }}</span>{% endfor %}
+                        <button type="submit" class="primary-button">Send phone code</button>
+                    </form>
+                {% elif profile.phone_verified %}
+                    <p>Phone: {{ profile.phone_number }} (verified)</p>
+                {% endif %}
+            </section>
+        </main>
+    </div>
+</body>
+</html>

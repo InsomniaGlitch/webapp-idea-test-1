@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verify email</title>
+    <link rel="stylesheet" href="{% static 'catalog/style.css' %}" />
+</head>
+<body>
+    <div class="login-page">
+        <main class="login-form">
+            <h1>Check your email</h1>
+            <p>Use the verification link we sent to activate your account.</p>
+            <p><a href="{% url 'login' %}">Return to login</a></p>
+        </main>
+    </div>
+</body>
+</html>

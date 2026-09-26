@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout</title>
+</head>
+<body>
+    <h1>Checkout</h1>
+    <p>Provider: {{ provider|default:"demo" }} | Mode: {{ payment_mode|default:"test" }}</p>
+
+    <ul>
+        {% for item in items %}
+            <li>{{ item.name }} — {{ item.price }} {{ item.currency|default:"RUB" }}</li>
+        {% empty %}
+            <li>Cart is empty.</li>
+        {% endfor %}
+    </ul>
+
+    <p>Total: {{ total }}</p>
+
+    {% if items %}
+        <form method="post" action="{% url 'checkout_confirm' %}">
+            {% csrf_token %}
+            <button type="submit">Pay now (demo)</button>
+        </form>
+    {% endif %}
+
+    <p><a href="{% url 'archive' %}">Back to archive</a></p>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<aside class="filter-panel" data-active-sort="{{ active_sort|default:'' }}" data-active-order="{{ active_order|default:'asc' }}">
+    <h2>Filter</h2>
+    <form method="get">
+        <div class="form-group">
+            <label>Sort by</label>
+            {% for radio in form.sort_by %}
+                <div class="radio-inline sort-option">
+                    {{ radio }}
+                    <span class="sort-arrow"></span>
+                </div>
+            {% endfor %}
+        </div>
+        <input type="hidden" name="order" value="{{ active_order|default:'asc' }}" />
+        <div class="form-group">
+            <label>Categories</label>
+            {% for checkbox in form.categories %}
+                <div class="checkbox-inline">{{ checkbox }}</div>
+            {% endfor %}
+        </div>
+        <div class="range-row">
+            <div class="form-group">
+                <label for="id_min_price">Min price</label>
+                {{ form.min_price }}
+            </div>
+            <div class="form-group">
+                <label for="id_max_price">Max price</label>
+                {{ form.max_price }}
+            </div>
+        </div>
+        <div class="range-row">
+            <div class="form-group">
+                <label for="id_start_date">From</label>
+                {{ form.start_date }}
+            </div>
+            <div class="form-group">
+                <label for="id_end_date">To</label>
+                {{ form.end_date }}
+            </div>
+        </div>
+    </form>
+</aside>

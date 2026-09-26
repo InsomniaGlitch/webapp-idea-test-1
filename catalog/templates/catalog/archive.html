@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Archive</title>
+    <link rel="stylesheet" href="{% static 'catalog/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'catalog/archive.css' %}" />
+</head>
+<body>
+    <header>
+        <h1>Archive</h1>
+        <nav>
+            <a href="{% url 'admin_panel' %}">Admin panel</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'account_overview' %}">My account</a>
+                <form method="post" action="{% url 'custom_logout' %}">{% csrf_token %}<button type="submit">Logout</button></form>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <div class="page-wrapper">
+        <main class="archive-list">
+            {% for item in items %}
+                {% include "catalog/partials/archive_card.html" with item=item %}
+            {% empty %}
+                <p>No audio files found.</p>
+            {% endfor %}
+        </main>
+
+        {% include "catalog/partials/archive_filters.html" %}
+    </div>
+
+    {% include "catalog/partials/cart_widget.html" %}
+
+    <script src="{% static 'catalog/archive.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment successful</title>
+</head>
+<body>
+    <h1>Payment successful</h1>
+    <p>Receipt: {{ purchase.provider_reference }}</p>
+    <p>Provider: {{ purchase.provider }}</p>
+    <p>Status: {{ purchase.status }}</p>
+
+    <ul>
+        {% for item in purchases %}
+            <li>{{ item.audio_file.name }} — {{ item.amount }} {{ item.currency }}</li>
+        {% endfor %}
+    </ul>
+
+    <p><a href="{% url 'my_content' %}">Open my content</a></p>
+</body>
+</html>

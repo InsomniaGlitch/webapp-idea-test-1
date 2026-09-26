@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verify phone</title>
+    <link rel="stylesheet" href="{% static 'catalog/style.css' %}" />
+</head>
+<body>
+    <div class="login-page">
+        <form method="post" class="login-form">
+            {% csrf_token %}
+            <h1>Verify phone</h1>
+            <p>Enter the code sent to your phone.</p>
+            <div class="form-row">
+                {{ form.phone_number.label_tag }}{{ form.phone_number }}
+                {% for error in form.phone_number.errors %}<span class="error">{{ error }}</span>{% endfor %}
+            </div>
+            <div class="form-row">
+                {{ form.code.label_tag }}{{ form.code }}
+                {% for error in form.code.errors %}<span class="error">{{ error }}</span>{% endfor %}
+            </div>
+            <button type="submit" class="primary-button">Verify</button>
+        </form>
+    </div>
+</body>
+</html>

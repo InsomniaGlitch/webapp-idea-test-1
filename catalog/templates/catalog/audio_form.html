@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'catalog/style.css' %}" />
+</head>
+<body>
+    <header>
+        <h1>{{ title }}</h1>
+        <nav>
+            <a href="{% url 'admin_panel' %}">Back to admin</a>
+            <form method="post" action="{% url 'custom_logout' %}">{% csrf_token %}<button type="submit">Logout</button></form>
+        </nav>
+    </header>
+    <div class="content-wrapper">
+        <form method="post" enctype="multipart/form-data" class="audio-form">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+                <div class="error-list">
+                    {% for error in form.non_field_errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <div class="form-row">
+                {{ form.name.label_tag }}
+                {{ form.name }}
+                {% for error in form.name.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-row">
+                {{ form.category.label_tag }}
+                {{ form.category }}
+                {% for error in form.category.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-row">
+                {{ form.price.label_tag }}
+                {{ form.price }}
+                {% for error in form.price.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-row">
+                {{ form.publish_date.label_tag }}
+                {{ form.publish_date }}
+                {% for error in form.publish_date.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-row">
+                {{ form.image.label_tag }}
+                {{ form.image }}
+                {% for error in form.image.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-row">
+                {{ form.audio_file.label_tag }}
+                {{ form.audio_file }}
+                {% for error in form.audio_file.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <button type="submit" class="primary-button">Save</button>
+        </form>
+    </div>
+</body>
+</html>
